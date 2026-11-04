@@ -1,5 +1,13 @@
 # Seguimiento de la publicación
 
+## 4 de noviembre de 2026 — escaparate de ingeniería
+
+Se enlaza desde los README español/inglés el caso técnico del perfil S3rri-dev: problema, arquitectura, decisiones de importación y cronómetro, código y comprobaciones. Se actualizan descripción y temas del repositorio. No cambia la implementación ni la versión publicada.
+
+Se repitieron 135 comprobaciones Swift, 50 JavaScript, compilación ARM64 y auditoría de fuentes/bundle: correctas. La revisión de presentación corresponde a GitHub; esta actualización documental no añade una nueva prueba física de suspensión ni compatibilidad.
+
+CI 41837435429 terminó con resultado global failure y trabajos cancelled, sin ejecutar pasos: GitHub informó que ningún ejecutor hosted adquirió los trabajos y notificó restricciones de capacidad macOS ARM64. No es evidencia de pruebas remotas superadas ni de una ejecución de las pruebas con fallo. Se mantiene visible el enlace a Actions. La actualización documental usa skip ci para no volver a encolar compilaciones sin cambios de código.
+
 ## 4 de noviembre de 2026 — versión pública 1.6.0
 
 Decisiones: repositorio e historial limpios, cuenta mantenedora S3rri-dev, código GPL-3.0-or-later e identidad reservada. Semilla vacía; ejemplos y fixtures independientes y sintéticos. Bundle oficial io.github.s3rri-dev.nodal; desarrollo con identificador y datos propios. Firma ad hoc, sin promesa de notarización.

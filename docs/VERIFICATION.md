@@ -29,6 +29,12 @@ CI define trabajos independientes en macos-15 y macos-26. Incluye pruebas, compi
 
 El workflow de release ejecuta las comprobaciones antes de generar los adjuntos. Cada manifiesto publicado identifica el commit, la arquitectura y los hashes.
 
+## Revisión del escaparate — 4 de noviembre de 2026
+
+Tras enlazar el caso técnico español/inglés se repitieron tests/run.sh (135), tests/run-ui.sh (50), scripts/build.sh y la auditoría del bundle: correctos. No cambia el código de la aplicación ni los paquetes etiquetados.
+
+La ejecución remota [41837435429](https://github.com/S3rri-dev/nodal/actions/runs/41837435429) terminó con resultado global failure; sus trabajos macOS 15/26 aparecen cancelled y no ejecutaron pasos. Las anotaciones de GitHub indican falta de adquisición por un runner hosted y restricciones de capacidad para macOS ARM64. No se atribuyen comprobaciones ejecutadas en esos sistemas.
+
 ## Límites explícitos
 
 No se ha probado físicamente en todas las versiones de macOS ni en Mac Intel. No hay prueba física certificada de suspensión y reanudación de este paquete. Tampoco auditoría exhaustiva de accesibilidad o seguridad. La versión se firma ad hoc; no tiene Developer ID, notarización ni distribución por App Store.

@@ -6,7 +6,7 @@ Nodal is a local academic organizer for Apple Silicon Macs. It combines your cal
 
 ![Nodal](docs/images/hero.png)
 
-[Download](https://github.com/S3rri-dev/nodal/releases/latest) · [Installation](docs/INSTALL.md) · [Contribute](CONTRIBUTING.md) · [Report an issue](https://github.com/S3rri-dev/nodal/issues/new/choose)
+[Download](https://github.com/S3rri-dev/nodal/releases/latest) · [Installation](docs/INSTALL.md) · [Technical case study](https://github.com/S3rri-dev/S3rri-dev/blob/main/proyectos/nodal.md#english) · [Contribute](CONTRIBUTING.md) · [Report an issue](https://github.com/S3rri-dev/nodal/issues/new/choose)
 
 The current interface and detailed guides are in Spanish. Dates use Europe/Madrid and a Monday-first calendar. The public app starts empty; all screenshots show synthetic demonstration data.
 

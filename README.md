@@ -12,7 +12,7 @@ Clases, tareas, sesiones de estudio y notas en un espacio propio para Mac.
 [![Licencia GPL](https://img.shields.io/badge/licencia-GPL--3.0--or--later-7A223C)](LICENSE)
 [![Plataforma](https://img.shields.io/badge/Mac-Apple%20Silicon-D8B56A?labelColor=21151B)](docs/INSTALL.md)
 
-**[Descargar para Mac](https://github.com/S3rri-dev/nodal/releases/latest)** · **[Primeros pasos](docs/GETTING_STARTED.md)** · **[Reportar un problema](https://github.com/S3rri-dev/nodal/issues/new/choose)**
+**[Descargar para Mac](https://github.com/S3rri-dev/nodal/releases/latest)** · **[Primeros pasos](docs/GETTING_STARTED.md)** · **[Caso técnico](https://github.com/S3rri-dev/S3rri-dev/blob/main/proyectos/nodal.md)** · **[Reportar un problema](https://github.com/S3rri-dev/nodal/issues/new/choose)**
 
 Español · [English](README.en.md)
 
