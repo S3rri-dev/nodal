@@ -53,3 +53,14 @@ Validación local de la propuesta: 135 Swift + 50 JavaScript, compilación ARM64
 A las 18:35 Europe/Madrid, la [CI alternativa 41877783472](https://github.com/S3rri-dev/nodal/actions/runs/41877783472) seguía en cola con tres trabajos sin ejecutor y sin pasos: Linux, macOS 15 Intel y macOS 26 Intel. El [ensayo de empaquetado 41877293656](https://github.com/S3rri-dev/nodal/actions/runs/41877293656) tampoco había empezado. Actions estaba habilitado y las etiquetas eran válidas. El panel general de GitHub figuraba operativo; no se confirmó la causa de esta espera más amplia.
 
 Se mantiene la propuesta sin integrar en main hasta disponer de ejecución remota. No se presentan esas plataformas como superadas. Este cambio no altera la app ni los adjuntos de v1.6.0.
+
+
+## Avance de la validación remota
+
+Tras refrescar los resultados de GitHub, la CI 41877783472 muestra JavaScript/auditoría Linux y verificación macos-26-intel superadas; macos-15-intel sigue queued sin pasos. El ensayo de empaquetado 41877293656 ha terminado success: ejecutó 135 comprobaciones Swift y 50 JavaScript, compilación ARM64, arranque de la copia Intel, empaquetado y subida del artefacto. El paso de crear una release quedó omitido, como corresponde a un ensayo manual.
+
+Se descargó el artefacto nodal-release (13348240542). Sus cuatro adjuntos coinciden con SHA256SUMS y el manifiesto referencia 5c93ece6253314dc30ce493840567698938fee15. El DMG se montó en lectura en un Mac Apple Silicon: auditoría de metadatos/arquitectura/semilla y firma correctas; el binario ARM64 generado por GitHub ejecutó --check con una base aislada vacía. Así se distingue la ejecución Intel remota de la ejecución ARM64 local del artefacto remoto.
+
+El incidente oficial https://www.githubstatus.com/incidents/h02n9572mx9y comenzó a las 18:40 Europe/Madrid del 4 de noviembre y figura investigating, con impacto major, en la comprobación realizada. La API del incidente confirma disponibilidad degradada de Actions. Durante este periodo los resultados agregados pueden tardar en reflejar los pasos terminados; las observaciones de cola anteriores se conservan como tales.
+
+Pendiente: resultado de macOS 15 y cierre de la incidencia. La propuesta sigue en borrador y main y la release v1.6.0 permanecen sin modificar.
