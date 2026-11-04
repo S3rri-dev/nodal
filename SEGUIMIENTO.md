@@ -2,7 +2,11 @@
 
 ## 4 de noviembre de 2026 — revisión de CI
 
-Diagnóstico confirmado mediante API: los trabajos ARM64 de 41837435429 no ejecutaron pasos y GitHub notificó restricciones de capacidad. Nueva comprobación ARM64 41876859354 sobre 34d0f35. Se prepara un trabajo Linux independiente para JavaScript/auditoría y CI Intel para pruebas nativas y compilación cruzada ARM64; arranque mediante copia temporal de la arquitectura del ejecutor, sin cambiar los adjuntos publicados. Release manual conserva artefactos sin publicar; el disparador de etiqueta sigue creando solo un borrador. Pendiente: validar localmente, ejecutar la alternativa en GitHub y registrar sus resultados.
+Diagnóstico confirmado mediante API: los trabajos ARM64 de 41837435429 no ejecutaron pasos y GitHub notificó restricciones de capacidad. Nueva comprobación ARM64 41876859354 sobre 34d0f35. Se prepara un trabajo Linux independiente para JavaScript/auditoría y CI Intel para pruebas nativas y compilación cruzada ARM64; arranque mediante copia temporal de la arquitectura del ejecutor, sin cambiar los adjuntos publicados. Release manual conserva artefactos sin publicar; el disparador de etiqueta sigue creando solo un borrador. Validación local: 135 Swift + 50 JavaScript, build ARM64, auditoría y arranque aislado correctos; sintaxis YAML correcta. Copia x86_64 compilada y firmada con avisos de compatibilidad del SDK local, sin ejecutarla.
+
+La CI alternativa 41877783472 y el empaquetado manual 41877293656 se han lanzado. A las 18:35 seguían sin ejecutor ni pasos, también en Linux e Intel. Se solicitaron cancelaciones de las ejecuciones anteriores sustituidas para evitar duplicados; no se confunde solicitud con cancelación completada.
+
+Pendiente externo: asignación de ejecutores por GitHub. Propuesta conservada en rama de prueba, sin integrar ni modificar la release. Registrar el resultado remoto cuando se produzca.
 
 ## 4 de noviembre de 2026 — escaparate de ingeniería
 

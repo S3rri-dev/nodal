@@ -46,4 +46,10 @@ La base no tiene cifrado propio ni sincronización. La interfaz es española y e
 
 ## Revisión de CI — 4 de noviembre de 2026
 
-Las anotaciones de 41837435429 indicaron que los trabajos no fueron adquiridos por ejecutores hosted y notificaron restricciones de capacidad para macOS ARM64. Se lanzó una nueva comprobación ARM64 sobre 34d0f35 para revisar la situación y se prepara una alternativa Intel manteniendo el producto ARM64. Las comprobaciones de ejecución de ambas arquitecturas se describen por separado. Los resultados de la alternativa se registrarán cuando concluyan; este cambio no altera la app ni los adjuntos de v1.6.0.
+Las anotaciones de 41837435429 indicaron que los trabajos no fueron adquiridos por ejecutores hosted y notificaron restricciones de capacidad para macOS ARM64. Se lanzó una nueva comprobación ARM64 sobre 34d0f35 para revisar la situación. Se preparó en codex/ci-macos-capacity una alternativa Intel y un trabajo Linux independiente, manteniendo el producto ARM64. Las comprobaciones de ejecución de ambas arquitecturas se describen por separado.
+
+Validación local de la propuesta: 135 Swift + 50 JavaScript, compilación ARM64, auditoría y arranque aislado correctos; YAML de ambos workflows válido. También se compiló y firmó la copia de comprobación x86_64. Esa compilación produjo avisos por una librería de compatibilidad de la instalación local que solo contiene ARM; no se ejecutó la copia Intel ni se instaló Rosetta.
+
+A las 18:35 Europe/Madrid, la [CI alternativa 41877783472](https://github.com/S3rri-dev/nodal/actions/runs/41877783472) seguía en cola con tres trabajos sin ejecutor y sin pasos: Linux, macOS 15 Intel y macOS 26 Intel. El [ensayo de empaquetado 41877293656](https://github.com/S3rri-dev/nodal/actions/runs/41877293656) tampoco había empezado. Actions estaba habilitado y las etiquetas eran válidas. El panel general de GitHub figuraba operativo; no se confirmó la causa de esta espera más amplia.
+
+Se mantiene la propuesta sin integrar en main hasta disponer de ejecución remota. No se presentan esas plataformas como superadas. Este cambio no altera la app ni los adjuntos de v1.6.0.
