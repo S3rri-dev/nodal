@@ -1,0 +1,33 @@
+NODAL — Tu carrera. Bajo control.
+
+INSTALAR
+Arrastra Nodal.app al enlace Aplicaciones de esta imagen.
+Después abre Nodal desde Aplicaciones.
+La versión pública comienza vacía: crea tu primera asignatura o importa
+el plan ficticio de Ejemplos/plan-demo.xml desde Ajustes.
+
+Mac con Apple Silicon. Objetivo de compilación: macOS 13 o posterior.
+Interfaz en español y horarios Europe/Madrid.
+La app instalada no necesita servidor, Python, Node ni cuenta.
+
+PRIMERA APERTURA
+Esta versión tiene firma ad hoc, sin Developer ID ni notarización.
+macOS puede bloquearla. Consulta los avisos y las instrucciones oficiales:
+https://support.apple.com/es-es/102445
+
+DATOS Y COPIAS
+Datos locales: ~/Library/Application Support/Nodal/
+La aplicación no sincroniza con calendarios externos ni con otros dispositivos.
+Antes de actualizar, crea una copia desde Ajustes de Nodal.
+
+CÓDIGO, DOCUMENTACIÓN Y AYUDA
+https://github.com/S3rri-dev/nodal
+Descargas oficiales:
+https://github.com/S3rri-dev/nodal/releases
+Problemas reproducibles:
+https://github.com/S3rri-dev/nodal/issues/new/choose
+
+LICENCIA
+Código GPL-3.0-or-later, sin garantía. Lee LICENSE.
+Nombre y logo de Nodal reservados según TRADEMARKS.md.
+Componentes y procedencia en THIRD_PARTY_NOTICES.md.

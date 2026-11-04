@@ -12,7 +12,7 @@ Abre el DMG y arrastra Nodal.app a Aplicaciones. La app funciona sin servidor ni
 
 - Mac con Apple Silicon. No se ofrece binario Intel.
 - Objetivo de compilación: macOS 13 o posterior.
-- La tabla de plataformas ejecutadas está en VERIFICATION.md. Un objetivo de compilación no equivale a haber probado todos esos sistemas.
+- Las plataformas ejecutadas están en [VERIFICATION.md](VERIFICATION.md). Un objetivo de compilación no equivale a haber probado todos esos sistemas.
 - La interfaz actual está en español y utiliza Europe/Madrid.
 
 ## Firma de esta versión

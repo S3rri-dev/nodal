@@ -11,6 +11,8 @@ Fecha: 4 de noviembre de 2026. Entorno local: macOS 27.0.1 en ARM64, Apple Swift
 - XML de ejemplo validado contra el XSD local.
 - Revisión de contenido y análisis automatizado de publicación: rutas personales, credenciales detectables, archivos privados y metadatos del bundle. Este análisis no equivale a una auditoría completa de seguridad.
 
+El DMG local se verificó con hdiutil, se montó en modo de solo lectura y se comprobó su firma, metadatos, semilla vacía y primer arranque aislado. Los tres hashes del manifiesto y los paquetes coincidieron con SHA256SUMS.txt.
+
 Comandos reproducibles: tests/run.sh, tests/run-ui.sh, scripts/build.sh y scripts/audit_publication.py.
 
 ## Interfaz comprobada
