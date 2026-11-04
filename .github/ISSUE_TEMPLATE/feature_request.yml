@@ -1,0 +1,22 @@
+name: Proponer una mejora
+description: Explica una necesidad de organización o estudio.
+title: "[Mejora]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Qué necesitas resolver
+      description: Describe una situación concreta.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Qué comportamiento propones
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas y límites

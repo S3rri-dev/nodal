@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ayuda y preguntas
+    url: https://github.com/S3rri-dev/nodal/discussions
+    about: Preguntas de uso, propuestas abiertas y conversación.
+  - name: Seguridad
+    url: https://github.com/S3rri-dev/nodal/security/advisories/new
+    about: Comunica vulnerabilidades de forma privada.

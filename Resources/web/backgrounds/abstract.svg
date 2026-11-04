@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs>
+ <linearGradient id="base" x2="1" y2="1"><stop stop-color="#160b11"/><stop offset="1" stop-color="#08080c"/></linearGradient>
+ <radialGradient id="wine"><stop stop-color="#7d2440" stop-opacity=".7"/><stop offset="1" stop-color="#1a0c12" stop-opacity="0"/></radialGradient>
+ <linearGradient id="gold" x2="1" y2=".3"><stop stop-color="#6e1933" stop-opacity="0"/><stop offset=".45" stop-color="#d8b56a"/><stop offset=".7" stop-color="#f3deac"/><stop offset="1" stop-color="#6e1933" stop-opacity=".2"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="16"/></filter>
+</defs>
+<path fill="url(#base)" d="M0 0h1920v1080H0z"/>
+<ellipse fill="url(#wine)" cx="1300" cy="70" rx="950" ry="800"/>
+<path d="M-200 1130C400 940 1020 300 1400-150" fill="none" stroke="#a24861" stroke-opacity=".25" stroke-width="95" filter="url(#glow)"/>
+<path d="M-100 1050C600 760 1170 440 2070 555" fill="none" stroke="url(#gold)" stroke-width="24" opacity=".45" filter="url(#glow)"/>
+<path d="M-100 1050C600 760 1170 440 2070 555" fill="none" stroke="url(#gold)" stroke-width="3"/>
+<path d="M-200 1130C400 940 1020 300 1400-150" fill="none" stroke="#d8b56a" stroke-opacity=".18" stroke-width="1.5"/>
+</svg>

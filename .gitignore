@@ -1,0 +1,17 @@
+.DS_Store
+build/
+dist/
+.swiftpm/
+.build/
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.log
+.env
+.env.*
+!.env.example
+*.p12
+*.p8
+*.key
+*.mobileprovision

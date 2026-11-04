@@ -1,0 +1,17 @@
+{
+  "snapshot": "",
+  "context": {
+    "timezone": "Europe/Madrid",
+    "locale": "es-ES",
+    "subjects": [],
+    "user_confirmations": [],
+    "known_conflicts": []
+  },
+  "entities": [],
+  "counts": {
+    "subject": 0,
+    "class": 0,
+    "exam": 0,
+    "study": 0
+  }
+}

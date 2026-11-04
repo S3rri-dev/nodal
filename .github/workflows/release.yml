@@ -1,0 +1,46 @@
+name: Preparar release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: macos-26
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - run: python3 scripts/audit_publication.py
+      - run: ./tests/run.sh
+      - run: ./tests/run-ui.sh
+      - run: ./scripts/build.sh
+      - name: Validar etiqueta y primer arranque
+        run: |
+          version="$(plutil -extract CFBundleShortVersionString raw dist/Nodal.app/Contents/Info.plist)"
+          test "$GITHUB_REF_NAME" = "v$version"
+          NODAL_DATA="$RUNNER_TEMP/nodal-check" dist/Nodal.app/Contents/MacOS/Nodal --check
+      - run: ./scripts/package.sh
+      - name: Conservar paquetes comprobables
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: nodal-release
+          path: |
+            dist/*.dmg
+            dist/*-src.zip
+            dist/*-manifest.json
+            dist/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14
+      - name: Crear borrador de publicación
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="$(plutil -extract CFBundleShortVersionString raw dist/Nodal.app/Contents/Info.plist)"
+          gh release create "$GITHUB_REF_NAME" dist/*.dmg dist/*-src.zip dist/*-manifest.json dist/SHA256SUMS.txt --verify-tag --draft --title "Nodal $version" --notes-file "docs/releases/$version.md"

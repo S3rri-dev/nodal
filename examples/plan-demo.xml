@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<universidad version="1" paquete="nodal-demo" revision="1" zona="Europe/Madrid" fechaRevision="2026-11-04">
+  <elemento id="MAT" tipo="subject">
+    <title>Matemáticas</title>
+    <color>#D8B56A</color>
+  </elemento>
+  <elemento id="MAT-tema" tipo="topic">
+    <title>Integrales y aplicaciones</title>
+    <subject>MAT</subject>
+  </elemento>
+  <elemento id="PRO" tipo="subject">
+    <title>Programación</title>
+    <color>#BD7088</color>
+  </elemento>
+  <elemento id="PRO-tema" tipo="topic">
+    <title>Algoritmos y estructuras</title>
+    <subject>PRO</subject>
+  </elemento>
+  <elemento id="DIS" tipo="subject">
+    <title>Diseño de interfaces</title>
+    <color>#D39AAA</color>
+  </elemento>
+  <elemento id="DIS-tema" tipo="topic">
+    <title>Prototipado y usabilidad</title>
+    <subject>DIS</subject>
+  </elemento>
+  <elemento id="MAT-1" tipo="task">
+    <title>Cambio de variable</title>
+    <subject>MAT</subject>
+    <topic>MAT-tema</topic>
+    <objective>Resolver los ejercicios del bloque de demostración.</objective>
+    <criterion>Explicar la solución y revisar los errores.</criterion>
+    <references>Guía de ejemplo · apartado 2</references>
+    <location>Biblioteca</location>
+    <dependencies />
+    <evaluation>MAT-prueba</evaluation>
+  </elemento>
+  <elemento id="MAT-2" tipo="task">
+    <title>Integral por partes</title>
+    <subject>MAT</subject>
+    <topic>MAT-tema</topic>
+    <objective>Resolver los ejercicios del bloque de demostración.</objective>
+    <criterion>Explicar la solución y revisar los errores.</criterion>
+    <references>Guía de ejemplo · apartado 2</references>
+    <location>Biblioteca</location>
+    <dependencies />
+    <evaluation>MAT-prueba</evaluation>
+  </elemento>
+  <elemento id="PRO-1" tipo="task">
+    <title>Complejidad y recursión</title>
+    <subject>PRO</subject>
+    <topic>PRO-tema</topic>
+    <objective>Resolver los ejercicios del bloque de demostración.</objective>
+    <criterion>Explicar la solución y revisar los errores.</criterion>
+    <references>Guía de ejemplo · apartado 2</references>
+    <location>Casa</location>
+    <dependencies />
+    <evaluation>PRO-prueba</evaluation>
+  </elemento>
+  <elemento id="PRO-2" tipo="task">
+    <title>Árboles de búsqueda</title>
+    <subject>PRO</subject>
+    <topic>PRO-tema</topic>
+    <objective>Resolver los ejercicios del bloque de demostración.</objective>
+    <criterion>Explicar la solución y revisar los errores.</criterion>
+    <references>Guía de ejemplo · apartado 2</references>
+    <location>Casa</location>
+    <dependencies />
+    <evaluation>PRO-prueba</evaluation>
+  </elemento>
+  <elemento id="DIS-1" tipo="task">
+    <title>Jerarquía visual</title>
+    <subject>DIS</subject>
+    <topic>DIS-tema</topic>
+    <objective>Resolver los ejercicios del bloque de demostración.</objective>
+    <criterion>Explicar la solución y revisar los errores.</criterion>
+    <references>Guía de ejemplo · apartado 2</references>
+    <location>Casa</location>
+    <dependencies />
+    <evaluation>DIS-prueba</evaluation>
+  </elemento>
+  <elemento id="DIS-2" tipo="task">
+    <title>Revisión del prototipo</title>
+    <subject>DIS</subject>
+    <topic>DIS-tema</topic>
+    <objective>Resolver los ejercicios del bloque de demostración.</objective>
+    <criterion>Explicar la solución y revisar los errores.</criterion>
+    <references>Guía de ejemplo · apartado 2</references>
+    <location>Casa</location>
+    <dependencies />
+    <evaluation>DIS-prueba</evaluation>
+  </elemento>
+  <elemento id="MAT-prueba" tipo="event">
+    <title>Prueba de matemáticas</title>
+    <subject>MAT</subject>
+    <category>exam</category>
+    <date>2026-11-11</date>
+  </elemento>
+  <elemento id="PRO-prueba" tipo="event">
+    <title>Prueba de programación</title>
+    <subject>PRO</subject>
+    <category>exam</category>
+    <date>2026-11-12</date>
+  </elemento>
+  <elemento id="DIS-prueba" tipo="event">
+    <title>Prueba de diseño de interfaces</title>
+    <subject>DIS</subject>
+    <category>exam</category>
+    <date>2026-11-13</date>
+  </elemento>
+  <elemento id="demo-clase-0" tipo="event">
+    <title>Teoría y problemas</title>
+    <subject>MAT</subject>
+    <category>class</category>
+    <start>2026-11-02T10:00:00+01:00</start>
+    <finish>2026-11-02T11:30:00+01:00</finish>
+    <location>Aula de ejemplo</location>
+  </elemento>
+  <elemento id="demo-estudio-0" tipo="event">
+    <title>Cambio de variable</title>
+    <subject>MAT</subject>
+    <task>MAT-1</task>
+    <category>study</category>
+    <start>2026-11-02T16:30:00+01:00</start>
+    <finish>2026-11-02T18:00:00+01:00</finish>
+    <location>Biblioteca</location>
+  </elemento>
+  <elemento id="demo-clase-1" tipo="event">
+    <title>Taller de algoritmos</title>
+    <subject>PRO</subject>
+    <category>class</category>
+    <start>2026-11-03T10:00:00+01:00</start>
+    <finish>2026-11-03T11:30:00+01:00</finish>
+    <location>Aula de ejemplo</location>
+  </elemento>
+  <elemento id="demo-estudio-1" tipo="event">
+    <title>Integral por partes</title>
+    <subject>MAT</subject>
+    <task>MAT-2</task>
+    <category>study</category>
+    <start>2026-11-03T16:30:00+01:00</start>
+    <finish>2026-11-03T18:00:00+01:00</finish>
+    <location>Casa</location>
+  </elemento>
+  <elemento id="demo-clase-2" tipo="event">
+    <title>Diseño y accesibilidad</title>
+    <subject>DIS</subject>
+    <category>class</category>
+    <start>2026-11-04T10:00:00+01:00</start>
+    <finish>2026-11-04T11:30:00+01:00</finish>
+    <location>Aula de ejemplo</location>
+  </elemento>
+  <elemento id="demo-estudio-2" tipo="event">
+    <title>Complejidad y recursión</title>
+    <subject>PRO</subject>
+    <task>PRO-1</task>
+    <category>study</category>
+    <start>2026-11-04T16:30:00+01:00</start>
+    <finish>2026-11-04T18:00:00+01:00</finish>
+    <location>Biblioteca</location>
+  </elemento>
+  <elemento id="demo-clase-3" tipo="event">
+    <title>Teoría y problemas</title>
+    <subject>MAT</subject>
+    <category>class</category>
+    <start>2026-11-05T10:00:00+01:00</start>
+    <finish>2026-11-05T11:30:00+01:00</finish>
+    <location>Aula de ejemplo</location>
+  </elemento>
+  <elemento id="demo-estudio-3" tipo="event">
+    <title>Árboles de búsqueda</title>
+    <subject>PRO</subject>
+    <task>PRO-2</task>
+    <category>study</category>
+    <start>2026-11-05T16:30:00+01:00</start>
+    <finish>2026-11-05T18:00:00+01:00</finish>
+    <location>Casa</location>
+  </elemento>
+  <elemento id="demo-clase-4" tipo="event">
+    <title>Taller de algoritmos</title>
+    <subject>PRO</subject>
+    <category>class</category>
+    <start>2026-11-06T10:00:00+01:00</start>
+    <finish>2026-11-06T11:30:00+01:00</finish>
+    <location>Aula de ejemplo</location>
+  </elemento>
+  <elemento id="demo-estudio-4" tipo="event">
+    <title>Jerarquía visual</title>
+    <subject>DIS</subject>
+    <task>DIS-1</task>
+    <category>study</category>
+    <start>2026-11-06T16:30:00+01:00</start>
+    <finish>2026-11-06T18:00:00+01:00</finish>
+    <location>Biblioteca</location>
+  </elemento>
+  <elemento id="demo-actual" tipo="event">
+    <title>Cambio de variable</title>
+    <subject>MAT</subject>
+    <task>MAT-1</task>
+    <category>study</category>
+    <start>2026-11-04T13:57:00+01:00</start>
+    <finish>2026-11-04T14:57:00+01:00</finish>
+    <location>Biblioteca</location>
+  </elemento>
+</universidad>

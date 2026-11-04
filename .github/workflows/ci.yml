@@ -1,0 +1,42 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    name: Verificar · ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, macos-26]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Herramientas existentes
+        run: |
+          xcrun swiftc --version
+          python3 --version
+          node --version
+      - name: Auditar publicación
+        run: python3 scripts/audit_publication.py
+      - name: Almacenamiento, importaciones y planificación
+        run: ./tests/run.sh
+      - name: Reloj, cálculo y sintaxis de interfaz
+        run: ./tests/run-ui.sh
+      - name: Compilar ARM64
+        run: ./scripts/build.sh
+      - name: Comprobar primer arranque aislado y bundle
+        run: |
+          NODAL_DATA="$RUNNER_TEMP/nodal-check" dist/Nodal.app/Contents/MacOS/Nodal --check
+          python3 scripts/audit_publication.py --bundle dist/Nodal.app
+          codesign --verify --deep --strict dist/Nodal.app

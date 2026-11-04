@@ -1,0 +1,33 @@
+name: Informar de un fallo
+description: Un comportamiento que no funciona como esperabas.
+title: "[Error]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Utiliza datos ficticios. No adjuntes bases, credenciales ni notas personales."
+  - type: input
+    id: version
+    attributes:
+      label: Versión de Nodal
+      placeholder: "1.6.0"
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Versión de macOS y tipo de Mac
+      placeholder: "macOS 27, Apple Silicon"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      description: Indica resultado esperado y observado.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Capturas o mensajes sin datos privados
