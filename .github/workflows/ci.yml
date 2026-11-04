@@ -16,6 +16,22 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  web:
+    name: JavaScript y fuentes · Linux
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Auditar fuentes públicas
+        run: python3 scripts/audit_publication.py
+      - name: Reloj, cálculo y sintaxis de interfaz
+        run: |
+          node --version
+          for file in Resources/web/*.js; do node --check "$file"; done
+          node tests/calendar-clock.cjs
+          node tests/grades.cjs
   verify:
     name: Verificar · ${{ matrix.os }}
     strategy:
@@ -38,8 +54,6 @@ jobs:
         run: python3 scripts/audit_publication.py
       - name: Almacenamiento, importaciones y planificación
         run: ./tests/run.sh
-      - name: Reloj, cálculo y sintaxis de interfaz
-        run: ./tests/run-ui.sh
       - name: Compilar ARM64
         run: ./scripts/build.sh
       - name: Auditar ARM64 y comprobar arranque con datos aislados

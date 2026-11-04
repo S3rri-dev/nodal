@@ -25,7 +25,7 @@ En navegador se revisaron Hoy, calendario semanal con línea actual, calculadora
 
 ## Automatización en GitHub
 
-CI utiliza por defecto macos-15-intel y macos-26-intel para ejecutar las pruebas Swift y JavaScript y compilar el producto ARM64. La auditoría comprueba arquitectura, metadatos, semilla y firma de ese producto. scripts/check-bundle.sh ejecuta el arranque con datos aislados: en Intel compila una copia temporal x86_64 del mismo código y recursos; en Apple Silicon ejecuta el binario ARM64. La copia Intel de comprobación permanece en build y no se distribuye.
+CI ejecuta las 50 comprobaciones JavaScript y la auditoría de fuentes en ubuntu-24.04, independientemente de la disponibilidad de macOS. Utiliza por defecto macos-15-intel y macos-26-intel para las 135 comprobaciones Swift y la compilación del producto ARM64. La auditoría comprueba arquitectura, metadatos, semilla y firma de ese producto. scripts/check-bundle.sh ejecuta el arranque con datos aislados: en Intel compila una copia temporal x86_64 del mismo código y recursos; en Apple Silicon ejecuta el binario ARM64. La copia Intel de comprobación permanece en build y no se distribuye.
 
 El disparador manual permite elegir runner_family=arm64 para repetir la comprobación en macos-15 y macos-26 con ejecución del producto ARM64. El resultado vigente de cada commit está en [Actions](https://github.com/S3rri-dev/nodal/actions/workflows/ci.yml); la presencia del workflow no significa que una ejecución haya pasado.
 
