@@ -1,5 +1,9 @@
 # Seguimiento de la publicación
 
+## 4 de noviembre de 2026 — revisión de CI
+
+Diagnóstico confirmado mediante API: los trabajos ARM64 de 41837435429 no ejecutaron pasos y GitHub notificó restricciones de capacidad. Nueva comprobación ARM64 41876859354 sobre 34d0f35. Se prepara CI Intel para pruebas nativas y compilación cruzada ARM64; arranque mediante copia temporal de la arquitectura del ejecutor, sin cambiar los adjuntos publicados. Release manual conserva artefactos sin publicar; el disparador de etiqueta sigue creando solo un borrador. Pendiente: validar localmente, ejecutar la alternativa en GitHub y registrar sus resultados.
+
 ## 4 de noviembre de 2026 — escaparate de ingeniería
 
 Se enlaza desde los README español/inglés el caso técnico del perfil S3rri-dev: problema, arquitectura, decisiones de importación y cronómetro, código y comprobaciones. Se actualizan descripción y temas del repositorio. No cambia la implementación ni la versión publicada.

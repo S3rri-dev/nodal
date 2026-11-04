@@ -13,9 +13,7 @@ La publicación oficial se realiza desde S3rri-dev/nodal. Usa la cuenta mantened
        ./tests/run.sh
        ./tests/run-ui.sh
        ./scripts/build.sh
-       NODAL_DATA="$PWD/build/release-check" dist/Nodal.app/Contents/MacOS/Nodal --check
-       python3 scripts/audit_publication.py --bundle dist/Nodal.app
-       codesign --verify --deep --strict dist/Nodal.app
+       ./scripts/check-bundle.sh
 
 5. Comprueba que la carpeta de datos es Nodal y que el bundle no contiene MUTestDataDirectory. No empaquetes un bundle modificado para pruebas.
 6. Registra el resultado y sus límites en VERIFICATION.md; confirma el código y los documentos en Git.
@@ -33,7 +31,9 @@ Tras publicar main y comprobar CI:
     git tag vVERSION
     git push origin vVERSION
 
-El workflow release.yml valida que etiqueta y versión coinciden, repite pruebas, compila, empaqueta y crea una **release en borrador**. Las acciones están fijadas por SHA; el permiso de escritura queda en el trabajo de release. No se sobrescriben etiquetas publicadas.
+El workflow release.yml utiliza macos-26-intel, valida que etiqueta y versión coinciden, repite pruebas, compila el producto ARM64, lo audita, empaqueta y crea una **release en borrador**. En Intel, la comprobación de arranque utiliza una copia temporal x86_64 del mismo código y recursos; la ejecución del binario ARM64 requiere Apple Silicon.
+
+Para validar el workflow sin crear ni modificar una release, ejecútalo con workflow_dispatch sobre la rama que quieras comprobar. Conserva los cuatro adjuntos como artefacto de Actions. Solo el disparador de etiqueta crea el borrador. Las acciones están fijadas por SHA; el permiso de escritura queda en el trabajo de release. No se sobrescriben etiquetas publicadas.
 
 ## Revisar el borrador
 

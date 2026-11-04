@@ -4,6 +4,12 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      runner_family:
+        description: 'Ejecutor de pruebas; la aplicación se compila siempre para ARM64'
+        type: choice
+        default: intel
+        options: [intel, arm64]
 permissions:
   contents: read
 concurrency:
@@ -15,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-15, macos-26]
+        os: ${{ fromJSON(inputs.runner_family == 'arm64' && '["macos-15","macos-26"]' || '["macos-15-intel","macos-26-intel"]') }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     steps:
@@ -24,6 +30,7 @@ jobs:
           persist-credentials: false
       - name: Herramientas existentes
         run: |
+          uname -m
           xcrun swiftc --version
           python3 --version
           node --version
@@ -35,8 +42,5 @@ jobs:
         run: ./tests/run-ui.sh
       - name: Compilar ARM64
         run: ./scripts/build.sh
-      - name: Comprobar primer arranque aislado y bundle
-        run: |
-          NODAL_DATA="$RUNNER_TEMP/nodal-check" dist/Nodal.app/Contents/MacOS/Nodal --check
-          python3 scripts/audit_publication.py --bundle dist/Nodal.app
-          codesign --verify --deep --strict dist/Nodal.app
+      - name: Auditar ARM64 y comprobar arranque con datos aislados
+        run: ./scripts/check-bundle.sh
