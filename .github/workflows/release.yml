@@ -2,7 +2,6 @@ name: Preparar release
 on:
   push:
     tags: ['v*']
-  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
@@ -10,7 +9,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   package:
-    runs-on: macos-26-intel
+    runs-on: macos-26
     timeout-minutes: 25
     permissions:
       contents: write
@@ -25,10 +24,8 @@ jobs:
       - name: Validar etiqueta y primer arranque
         run: |
           version="$(plutil -extract CFBundleShortVersionString raw dist/Nodal.app/Contents/Info.plist)"
-          if [[ "$GITHUB_EVENT_NAME" == push ]]; then
-            test "$GITHUB_REF_NAME" = "v$version"
-          fi
-          ./scripts/check-bundle.sh
+          test "$GITHUB_REF_NAME" = "v$version"
+          NODAL_DATA="$RUNNER_TEMP/nodal-check" dist/Nodal.app/Contents/MacOS/Nodal --check
       - run: ./scripts/package.sh
       - name: Conservar paquetes comprobables
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
@@ -42,7 +39,6 @@ jobs:
           if-no-files-found: error
           retention-days: 14
       - name: Crear borrador de publicación
-        if: github.event_name == 'push'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

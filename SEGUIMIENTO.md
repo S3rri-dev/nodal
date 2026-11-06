@@ -37,4 +37,6 @@ Se descargó el artefacto nodal-release (13348240542). Sus cuatro adjuntos coinc
 
 El incidente oficial https://www.githubstatus.com/incidents/h02n9572mx9y comenzó a las 18:40 Europe/Madrid del 4 de noviembre y figura investigating, con impacto major, en la comprobación realizada. La API del incidente confirma disponibilidad degradada de Actions. Durante este periodo los resultados agregados pueden tardar en reflejar los pasos terminados; las observaciones de cola anteriores se conservan como tales.
 
-Pendiente: resultado de macOS 15 y cierre de la incidencia. La propuesta sigue en borrador y main y la release v1.6.0 permanecen sin modificar.
+El [reintento posterior](https://github.com/S3rri-dev/nodal/actions/runs/42250423106) confirmó Linux y macOS 26 Intel. macOS 15 Intel y [macOS 15/26 ARM64](https://github.com/S3rri-dev/nodal/actions/runs/42250480491) se cancelaron antes de ejecutar pasos.
+
+Se reduce la CI habitual a Linux y macOS 26 Intel. El paquete sigue compilándose exclusivamente para Apple Silicon. La prueba de arranque en Intel usa una copia temporal y la comprobación de arranque del binario distribuido se ejecuta en Apple Silicon.

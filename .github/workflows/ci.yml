@@ -4,12 +4,6 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
-    inputs:
-      runner_family:
-        description: 'Ejecutor de pruebas; la aplicación se compila siempre para ARM64'
-        type: choice
-        default: intel
-        options: [intel, arm64]
 permissions:
   contents: read
 concurrency:
@@ -33,12 +27,8 @@ jobs:
           node tests/calendar-clock.cjs
           node tests/grades.cjs
   verify:
-    name: Verificar · ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: ${{ fromJSON(inputs.runner_family == 'arm64' && '["macos-15","macos-26"]' || '["macos-15-intel","macos-26-intel"]') }}
-    runs-on: ${{ matrix.os }}
+    name: Swift y bundle ARM64 · macOS 26 Intel
+    runs-on: macos-26-intel
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7

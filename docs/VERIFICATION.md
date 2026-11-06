@@ -25,11 +25,11 @@ En navegador se revisaron Hoy, calendario semanal con línea actual, calculadora
 
 ## Automatización en GitHub
 
-CI ejecuta las 50 comprobaciones JavaScript y la auditoría de fuentes en ubuntu-24.04, independientemente de la disponibilidad de macOS. Utiliza por defecto macos-15-intel y macos-26-intel para las 135 comprobaciones Swift y la compilación del producto ARM64. La auditoría comprueba arquitectura, metadatos, semilla y firma de ese producto. scripts/check-bundle.sh ejecuta el arranque con datos aislados: en Intel compila una copia temporal x86_64 del mismo código y recursos; en Apple Silicon ejecuta el binario ARM64. La copia Intel de comprobación permanece en build y no se distribuye.
+CI ejecuta las 50 comprobaciones JavaScript y la auditoría de fuentes en `ubuntu-24.04`. El trabajo `macos-26-intel` ejecuta las 135 comprobaciones Swift, compila el producto ARM64 y verifica su arquitectura, metadatos, semilla y firma.
 
-El disparador manual permite elegir runner_family=arm64 para repetir la comprobación en macos-15 y macos-26 con ejecución del producto ARM64. El resultado vigente de cada commit está en [Actions](https://github.com/S3rri-dev/nodal/actions/workflows/ci.yml); la presencia del workflow no significa que una ejecución haya pasado.
+`scripts/check-bundle.sh` verifica el arranque con datos aislados. En CI lo hace con una copia temporal x86_64 del mismo código y recursos. En Apple Silicon se puede ejecutar localmente el mismo script para comprobar el arranque del bundle ARM64. El instalador público se compila exclusivamente para Apple Silicon.
 
-El workflow de release usa macos-26-intel y ejecuta las comprobaciones antes de generar los adjuntos ARM64. Un disparo manual valida y conserva los paquetes como artefacto sin crear una release; solo una etiqueta puede crear el borrador. Cada manifiesto publicado identifica el commit, la arquitectura y los hashes.
+La ejecución vigente de cada commit figura en [Actions](https://github.com/S3rri-dev/nodal/actions/workflows/ci.yml). El proceso separado de publicación por etiqueta está descrito en [Publicar una versión](RELEASING.md).
 
 ## Revisión del escaparate — 4 de noviembre de 2026
 
@@ -63,4 +63,4 @@ Se descargó el artefacto nodal-release (13348240542). Sus cuatro adjuntos coinc
 
 El incidente oficial https://www.githubstatus.com/incidents/h02n9572mx9y comenzó a las 18:40 Europe/Madrid del 4 de noviembre y figura investigating, con impacto major, en la comprobación realizada. La API del incidente confirma disponibilidad degradada de Actions. Durante este periodo los resultados agregados pueden tardar en reflejar los pasos terminados; las observaciones de cola anteriores se conservan como tales.
 
-Pendiente: resultado de macOS 15 y cierre de la incidencia. La propuesta sigue en borrador y main y la release v1.6.0 permanecen sin modificar.
+Al cerrar la incidencia se repitieron las pruebas. [Linux y macOS 26 Intel](https://github.com/S3rri-dev/nodal/actions/runs/42250423106) volvieron a pasar. GitHub canceló macOS 15 Intel y [ambos trabajos ARM64](https://github.com/S3rri-dev/nodal/actions/runs/42250480491) sin ejecutar pasos. La CI habitual se limita a los dos entornos que completaron las comprobaciones. La validación del binario distribuido se realiza en Apple Silicon.
