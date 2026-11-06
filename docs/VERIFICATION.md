@@ -25,9 +25,11 @@ En navegador se revisaron Hoy, calendario semanal con línea actual, calculadora
 
 ## Automatización en GitHub
 
-CI define trabajos independientes en macos-15 y macos-26. Incluye pruebas, compilación, primer arranque aislado, auditoría del bundle y comprobación de firma. El resultado vigente de cada commit está en [Actions](https://github.com/S3rri-dev/nodal/actions/workflows/ci.yml); la presencia del workflow no significa que una ejecución haya pasado.
+CI ejecuta las 50 comprobaciones JavaScript y la auditoría de fuentes en `ubuntu-24.04`. El trabajo `macos-26-intel` ejecuta las 135 comprobaciones Swift, compila el producto ARM64 y verifica su arquitectura, metadatos, semilla y firma.
 
-El workflow de release ejecuta las comprobaciones antes de generar los adjuntos. Cada manifiesto publicado identifica el commit, la arquitectura y los hashes.
+`scripts/check-bundle.sh` verifica el arranque con datos aislados. En CI lo hace con una copia temporal x86_64 del mismo código y recursos. En Apple Silicon se puede ejecutar localmente el mismo script para comprobar el arranque del bundle ARM64. El instalador público se compila exclusivamente para Apple Silicon.
+
+La ejecución vigente de cada commit figura en [Actions](https://github.com/S3rri-dev/nodal/actions/workflows/ci.yml). El proceso separado de publicación por etiqueta está descrito en [Publicar una versión](RELEASING.md).
 
 ## Revisión del escaparate — 4 de noviembre de 2026
 
@@ -40,3 +42,25 @@ La ejecución remota [41837435429](https://github.com/S3rri-dev/nodal/actions/ru
 No se ha probado físicamente en todas las versiones de macOS ni en Mac Intel. No hay prueba física certificada de suspensión y reanudación de este paquete. Tampoco auditoría exhaustiva de accesibilidad o seguridad. La versión se firma ad hoc; no tiene Developer ID, notarización ni distribución por App Store.
 
 La base no tiene cifrado propio ni sincronización. La interfaz es española y el calendario usa Europe/Madrid. La aplicación instalada no precisa el servidor local utilizado exclusivamente para capturas durante el desarrollo.
+
+
+## Revisión de CI — 4 de noviembre de 2026
+
+Las anotaciones de 41837435429 indicaron que los trabajos no fueron adquiridos por ejecutores hosted y notificaron restricciones de capacidad para macOS ARM64. Se lanzó una nueva comprobación ARM64 sobre 34d0f35 para revisar la situación. Se preparó en codex/ci-macos-capacity una alternativa Intel y un trabajo Linux independiente, manteniendo el producto ARM64. Las comprobaciones de ejecución de ambas arquitecturas se describen por separado.
+
+Validación local de la propuesta: 135 Swift + 50 JavaScript, compilación ARM64, auditoría y arranque aislado correctos; YAML de ambos workflows válido. También se compiló y firmó la copia de comprobación x86_64. Esa compilación produjo avisos por una librería de compatibilidad de la instalación local que solo contiene ARM; no se ejecutó la copia Intel ni se instaló Rosetta.
+
+A las 18:35 Europe/Madrid, la [CI alternativa 41877783472](https://github.com/S3rri-dev/nodal/actions/runs/41877783472) seguía en cola con tres trabajos sin ejecutor y sin pasos: Linux, macOS 15 Intel y macOS 26 Intel. El [ensayo de empaquetado 41877293656](https://github.com/S3rri-dev/nodal/actions/runs/41877293656) tampoco había empezado. Actions estaba habilitado y las etiquetas eran válidas. El panel general de GitHub figuraba operativo; no se confirmó la causa de esta espera más amplia.
+
+Se mantiene la propuesta sin integrar en main hasta disponer de ejecución remota. No se presentan esas plataformas como superadas. Este cambio no altera la app ni los adjuntos de v1.6.0.
+
+
+## Avance de la validación remota
+
+Tras refrescar los resultados de GitHub, la CI 41877783472 muestra JavaScript/auditoría Linux y verificación macos-26-intel superadas; macos-15-intel sigue queued sin pasos. El ensayo de empaquetado 41877293656 ha terminado success: ejecutó 135 comprobaciones Swift y 50 JavaScript, compilación ARM64, arranque de la copia Intel, empaquetado y subida del artefacto. El paso de crear una release quedó omitido, como corresponde a un ensayo manual.
+
+Se descargó el artefacto nodal-release (13348240542). Sus cuatro adjuntos coinciden con SHA256SUMS y el manifiesto referencia 5c93ece6253314dc30ce493840567698938fee15. El DMG se montó en lectura en un Mac Apple Silicon: auditoría de metadatos/arquitectura/semilla y firma correctas; el binario ARM64 generado por GitHub ejecutó --check con una base aislada vacía. Así se distingue la ejecución Intel remota de la ejecución ARM64 local del artefacto remoto.
+
+El incidente oficial https://www.githubstatus.com/incidents/h02n9572mx9y comenzó a las 18:40 Europe/Madrid del 4 de noviembre y figura investigating, con impacto major, en la comprobación realizada. La API del incidente confirma disponibilidad degradada de Actions. Durante este periodo los resultados agregados pueden tardar en reflejar los pasos terminados; las observaciones de cola anteriores se conservan como tales.
+
+Al cerrar la incidencia se repitieron las pruebas. [Linux y macOS 26 Intel](https://github.com/S3rri-dev/nodal/actions/runs/42250423106) volvieron a pasar. GitHub canceló macOS 15 Intel y [ambos trabajos ARM64](https://github.com/S3rri-dev/nodal/actions/runs/42250480491) sin ejecutar pasos. La CI habitual se limita a los dos entornos que completaron las comprobaciones. La validación del binario distribuido se realiza en Apple Silicon.

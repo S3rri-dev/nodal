@@ -10,13 +10,25 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  web:
+    name: JavaScript y fuentes · Linux
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Auditar fuentes públicas
+        run: python3 scripts/audit_publication.py
+      - name: Reloj, cálculo y sintaxis de interfaz
+        run: |
+          node --version
+          for file in Resources/web/*.js; do node --check "$file"; done
+          node tests/calendar-clock.cjs
+          node tests/grades.cjs
   verify:
-    name: Verificar · ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-15, macos-26]
-    runs-on: ${{ matrix.os }}
+    name: Swift y bundle ARM64 · macOS 26 Intel
+    runs-on: macos-26-intel
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -24,6 +36,7 @@ jobs:
           persist-credentials: false
       - name: Herramientas existentes
         run: |
+          uname -m
           xcrun swiftc --version
           python3 --version
           node --version
@@ -31,12 +44,7 @@ jobs:
         run: python3 scripts/audit_publication.py
       - name: Almacenamiento, importaciones y planificación
         run: ./tests/run.sh
-      - name: Reloj, cálculo y sintaxis de interfaz
-        run: ./tests/run-ui.sh
       - name: Compilar ARM64
         run: ./scripts/build.sh
-      - name: Comprobar primer arranque aislado y bundle
-        run: |
-          NODAL_DATA="$RUNNER_TEMP/nodal-check" dist/Nodal.app/Contents/MacOS/Nodal --check
-          python3 scripts/audit_publication.py --bundle dist/Nodal.app
-          codesign --verify --deep --strict dist/Nodal.app
+      - name: Auditar ARM64 y comprobar arranque con datos aislados
+        run: ./scripts/check-bundle.sh
